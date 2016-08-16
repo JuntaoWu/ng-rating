@@ -1,6 +1,6 @@
 {
   "name": "ng-rating",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A rating plugin using star to represent the score ",
   "homepage": "https://github.com/JuntaoWu/ng-rating",
   "author": {
@@ -60,6 +60,8 @@
     "karma-jasmine": "0.3.7",
     "karma-phantomjs-launcher": "1.0.0",
     "karma-remap-istanbul": "0.0.5",
+	"gulp-cssmin": "0.1.7",
+    "gulp-csslint": "0.3.0",
     "ng-repeat-n": "0.0.4",
     "path": "0.12.7",
     "phantomjs-prebuilt": "2.1.7",

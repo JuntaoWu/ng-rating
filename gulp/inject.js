@@ -24,3 +24,19 @@ gulp.task('inject-js', function () {
     .pipe(gulp.dest(conf.paths.example))
     .on('error', conf.errorHandler(conf.errors.title.TYPESCRIPT));
 });
+
+/**
+ * Inject minified css build output with a link tag to html.
+ * Notify injected minified css file.
+ * Report Errors.
+ */
+gulp.task('inject-css', function () {
+  gulp.src(path.join(conf.paths.example, conf.files.EXAMPLE_HTML))
+    .pipe($.inject(gulp.src(path.join(conf.paths.bower, conf.files.BUNDLE_CSS),{read: false}),{relative:true}))
+    .pipe($.notify({
+      "message": conf.files.BUNDLE_CSS + " injected to html",
+      "onLast": true
+    }))
+    .pipe(gulp.dest(conf.paths.example))
+    .on('error', conf.errorHandler(conf.errors.title.TYPESCRIPT));
+});

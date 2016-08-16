@@ -20,6 +20,10 @@ exports.paths = {
   bower: 'bower',
   lib: 'lib',
   jsTmp:'.jsTmp',
+  cssTmp:'.cssTmp',
+  styles: {
+    css:'styles/**/*.css'
+  },
   gulp:'gulp',
   gulpFile:'gulpfile.js',
   coverage: 'coverage',
@@ -43,6 +47,7 @@ exports.paths = {
 exports.path_pattern = {
   ts:'**/*.ts',
   js:'**/*.js',
+  css:'**/*.css',
   map:'**/*.map',
   ktp_ts:'**/*.ktp.ts'
 };
@@ -53,6 +58,8 @@ exports.path_pattern = {
 exports.files = {
   BOWER_JS: Project_Name + '.js',
   BOWER_MIN_JS: Project_Name + '.min.js',
+  BUNDLE_CSS: Project_Name + '.css',
+  BUNDLE_MIN_CSS: Project_Name + '.min.css',
   PROJECT_NAME: Project_Name,
   JSON_DOC:'doc.json',
   EXAMPLE_HTML:'index.html'

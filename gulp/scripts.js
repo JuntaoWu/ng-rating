@@ -132,10 +132,19 @@ gulp.task('nsp', function (done) {
 });
 
 /**
+ * Gulp build css task.
+ * Clean css temporary directory and css files in distribution directories -> run compile and minify css -> copy css files.
+ * @param done - done callback function.
+ */
+gulp.task('build-css',function(done) {
+  runSequence(['clean-css-tmp','clean-css'], 'min-css', 'copy-css',done);
+});
+
+/**
  * Gulp build scripts task.
  * Run nsp -> clean build -> show tslint errors and update tsconfig.json in parallel -> run npm, build bower in parallel and run inject js.
  * @param done - done callback function.
  */
 gulp.task('build-scripts',function(done) {
-  runSequence('nsp','clean-build',['tslint', 'tsconfig-update'], ['npm', 'build-bower'], 'inject-js', done);
+  runSequence('nsp','clean-build',['tslint', 'tsconfig-update'], ['npm', 'build-bower'], 'inject-js', 'build-css', 'inject-css', done);
 });

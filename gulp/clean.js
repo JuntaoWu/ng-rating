@@ -61,6 +61,16 @@ gulp.task('clean-source-tmp', function () {
 });
 
 /**
+ * Gulp task to clean css files which are created inside distribution directories.
+ */
+gulp.task('clean-css', function () {
+    return del([
+      path.join(conf.paths.bower, conf.path_pattern.css),
+      path.join(conf.paths.lib, conf.path_pattern.css)
+    ]);
+});
+
+/**
  * Gulp task to clean temporary .js files which are created inside .jsTmp folder.
  */
 gulp.task('clean-js-tmp', function () {
@@ -70,12 +80,21 @@ gulp.task('clean-js-tmp', function () {
 });
 
 /**
- * Gulp task to clean .jsTmp directory.
- * Run clean-js-tmp task.
+ * Gulp task to clean temporary css files which are created inside .cssTmp folder.
+ */
+gulp.task('clean-css-tmp', function () {
+    return del([
+        conf.paths.cssTmp
+    ]);
+});
+
+/**
+ * Gulp task to clean .jsTmp directory and .cssTmp directory.
+ * Run clean-js-tmp and  clean-css-tmp tasks in parallel.
  * @param done - done callback function.
  */
 gulp.task('clean-tmp', function(done){
-  runSequence('clean-js-tmp',done);
+  runSequence(['clean-js-tmp', 'clean-css-tmp'],done);
 });
 
 /**

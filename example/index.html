@@ -8,16 +8,16 @@
 </head>
 
 <body ng-controller="mainController">
-  <ng-rating ng-model="score"></ng-rating>
+  <ng-rating ng-model="model.grade"></ng-rating>
 
-  <input type="text" class="form-control" style="width: 200px;" ng-model="score" placeholder="Input score" />
+  <input type="text" style="width: 200px;" ng-model="model.grade" placeholder="Input score" />
 
   <script src="../bower_components/angular/angular.js"></script>
   <script src="../bower/ng-rating.js"></script>
   <script>
     angular.module("mainApp", ["ng-rating-directive"])
     .controller("mainController", function($scope) {
-      $scope.score = 2;
+      
     });
   </script>
 </body>

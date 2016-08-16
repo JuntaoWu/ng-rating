@@ -8,8 +8,10 @@ angular.module("ng-rating-directive", ["ng-repeat-n-directive"])
             restrict: 'E',
             template: '<div><span ng-repeat-n="5" ng-click="changeRating($index)"><i class="fa fa-star" ng-show="($index + 1) <= bindRating"></i><i class="fa fa-star-half" ng-show="($index + 0.5) == bindRating"></i><i class="fa fa-star-o" ng-show="$index >= bindRating"></i></span></div>',
             link: function ($scope, $element, $attributes, controller) {
+                var getter = $parse($attributes.ngModel);
+                var setter = getter.assign;
                 $scope.$watch($attributes.ngModel, function () {
-                    $scope.bindRating = $scope[$attributes.ngModel];
+                    $scope.bindRating = getter($scope) || 0;
                 });
 
                 $scope.changeRating = function ($index) {
@@ -20,7 +22,7 @@ angular.module("ng-rating-directive", ["ng-repeat-n-directive"])
                     else {
                         $scope.bindRating = $index + 0.5;
                     }
-                    $scope[$attributes.ngModel] = $scope.bindRating;
+                    setter($scope, $scope.bindRating);
                 };
             }
         };
